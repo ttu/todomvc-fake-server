@@ -23,8 +23,12 @@ export default class MainSection extends Component {
       this.props.actions.getTodos();
   }
 
-  handleClearCompleted = () => {
-    this.props.actions.clearCompleted()
+  // handleClearCompleted = () => {
+  //   this.props.actions.clearCompleted();
+  // }
+
+  handleClearCompleted = (ids) => {
+    this.props.actions.clearCompleted(ids);
   }
 
   handleShow = filter => {
@@ -38,7 +42,8 @@ export default class MainSection extends Component {
         <input className="toggle-all"
                type="checkbox"
                checked={completedCount === todos.length}
-               onChange={actions.completeAll} />
+               //onChange={actions.completeAll} />               
+               onChange={() => actions.completeAll(todos.filter(e => e.completed === false).map(e => e.id))} />
       )
     }
   }
@@ -53,7 +58,8 @@ export default class MainSection extends Component {
         <Footer completedCount={completedCount}
                 activeCount={activeCount}
                 filter={filter}
-                onClearCompleted={this.handleClearCompleted}
+                //onClearCompleted={this.handleClearCompleted}                
+                onClearCompleted={() => this.handleClearCompleted(todos.filter(e => e.completed).map(e => e.id))}
                 onShow={this.handleShow} />
       )
     }

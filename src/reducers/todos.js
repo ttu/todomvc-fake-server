@@ -42,7 +42,9 @@ export default function todos(state = initialState, action) {
     case COMPLETE_TODO:
       return state.map(todo =>
         todo.id === action.id ?
-          { ...todo, completed: !todo.completed } :
+          // No more toggling, completed state comes from action
+          // { ...todo, completed: !todo.completed } :
+          { ...todo, completed: action.completed } :          
           todo
       )
 

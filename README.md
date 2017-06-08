@@ -19,3 +19,7 @@ Open [http://localhost:3000](http://localhost:3000)
 ## Step by step modification guide
 
 TODO: Step by step guide how to modify original [Redux TodoMVC Example](https://github.com/reactjs/redux/tree/master/examples/todomvc) and end up with this.
+
+### Notes
+
+* Tests are not updated
