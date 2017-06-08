@@ -18,9 +18,15 @@ export default class MainSection extends Component {
 
   state = { filter: SHOW_ALL }
 
-  // Add to load initial state
+  // Add componentDidMount to load initial state and to update state when message is received from WebSocket
   componentDidMount() {
       this.props.actions.getTodos();
+      
+      this.connection = new WebSocket('ws://localhost:57602/ws');
+
+      this.connection.onmessage = evt => { 
+        this.props.actions.getTodos();
+      };
   }
 
   // handleClearCompleted = () => {
