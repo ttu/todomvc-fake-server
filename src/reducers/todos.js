@@ -1,3 +1,4 @@
+// Add new GET_TODOS constant
 import { ADD_TODO, DELETE_TODO, EDIT_TODO, COMPLETE_TODO, COMPLETE_ALL, CLEAR_COMPLETED, GET_TODOS } from '../constants/ActionTypes'
 
 // Initial state is not needed anymore
@@ -11,14 +12,14 @@ const initialState = [
 
 export default function todos(state = initialState, action) {
   switch (action.type) {
-    // Now as todos are stored to server we need to update whole state
+    // Now as todo data is stored to server, we need to update whole state
     case GET_TODOS:
-      return action.data;
+      return action.data
 
     case ADD_TODO:
       return [
         {
-          // Id will come with action          
+          // Id will come with action payload
           // id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
           id: action.id,
           completed: action.completed,
@@ -42,7 +43,7 @@ export default function todos(state = initialState, action) {
     case COMPLETE_TODO:
       return state.map(todo =>
         todo.id === action.id ?
-          // No more toggling, completed state comes from action
+          // No more toggling, completed state comes with action payload
           // { ...todo, completed: !todo.completed } :
           { ...todo, completed: action.completed } :          
           todo

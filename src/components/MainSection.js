@@ -20,21 +20,19 @@ export default class MainSection extends Component {
 
   // Add componentDidMount to load initial state and to update state when message is received from WebSocket
   componentDidMount() {
-      this.props.actions.getTodos();
+      this.props.actions.getTodos()
       
-      this.connection = new WebSocket('ws://localhost:57602/ws');
-
+      this.connection = new WebSocket('ws://localhost:57602/ws')
+      
       this.connection.onmessage = evt => { 
-        this.props.actions.getTodos();
-      };
+        this.props.actions.getTodos()
+      }
   }
 
   // handleClearCompleted = () => {
-  //   this.props.actions.clearCompleted();
-  // }
-
   handleClearCompleted = (ids) => {
-    this.props.actions.clearCompleted(ids);
+    // this.props.actions.clearCompleted()
+    this.props.actions.clearCompleted(ids)
   }
 
   handleShow = filter => {
@@ -49,7 +47,7 @@ export default class MainSection extends Component {
                type="checkbox"
                checked={completedCount === todos.length}
                //onChange={actions.completeAll} />               
-               onChange={() => actions.completeAll(todos.filter(e => e.completed === false).map(e => e.id))} />
+               onChange={() => actions.completeAll(todos.filter(e => !e.completed).map(e => e.id))} />
       )
     }
   }

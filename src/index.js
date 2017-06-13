@@ -6,10 +6,10 @@ import App from './containers/App'
 import reducer from './reducers'
 import 'todomvc-app-css/index.css'
 
-import thunk from 'redux-thunk';
+import thunk from 'redux-thunk'
 
-// const store = createStore(reducer);
-const store = createStore(reducer, applyMiddleware(thunk));
+// const store = createStore(reducer)
+const store = createStore(reducer, applyMiddleware(thunk))
 
 render(
   <Provider store={store}>
