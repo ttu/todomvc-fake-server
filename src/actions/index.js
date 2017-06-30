@@ -1,12 +1,12 @@
 import * as types from '../constants/ActionTypes'
 import superagent from 'superagent'
 
-this.url = 'http://localhost:57602'
+this.url = 'http://localhost:57602/api/todos/'
 
 // export const addTodo = text => ({ type: types.ADD_TODO, text })
 export const addTodo = text => { return dispatch => {
     return superagent
-        .post(`${this.url}/api/todo/`)
+        .post(`${this.url}`)
         .send({ text: text, completed: false })
         .end((err, res) => dispatch({ type: types.ADD_TODO, id: res.body.id, text: text, completed: false }))
 }}
@@ -14,14 +14,14 @@ export const addTodo = text => { return dispatch => {
 // export const deleteTodo = id => ({ type: types.DELETE_TODO, id })
 export const deleteTodo = id => { return dispatch => {
     return superagent
-        .delete(`${this.url}/api/todo/${id}`)
+        .delete(`${this.url}${id}`)
         .end((err, res) => dispatch({ type: types.DELETE_TODO, id }))
 }}
 
 // export const editTodo = (id, text) => ({ type: types.EDIT_TODO, id, text })
 export const editTodo = (id, text) => { return dispatch => {
     return superagent
-        .patch(`${this.url}/api/todo/${id}`)
+        .patch(`${this.url}${id}`)
         .send({ text: text })
         .end((err, res) => dispatch({ type: types.EDIT_TODO, id: id, text: text }))
 }}
@@ -30,7 +30,7 @@ export const editTodo = (id, text) => { return dispatch => {
 // export const completeTodo = id => ({ type: types.COMPLETE_TODO, id })
 export const completeTodo = (id, state) => { return dispatch => {
     return superagent
-        .patch(`${this.url}/api/todo/${id}`)
+        .patch(`${this.url}${id}`)
         .send({ completed: state })
         .end((err, res) => dispatch({ type: types.COMPLETE_TODO, id: id, completed: state }))
 }}
@@ -38,7 +38,7 @@ export const completeTodo = (id, state) => { return dispatch => {
 // New get function
 export const getTodos = () => { return dispatch => {
     return superagent
-        .get(`${this.url}/api/todo/`)
+        .get(`${this.url}`)
         .end((err, res) => {
             if (err)
                 dispatch({ type: types.GET_TODOS, data: [] })
@@ -54,7 +54,7 @@ export const completeAll = ids => { return dispatch => {
     var promises = ids.map(id => {
         return new Promise((resolve, reject) => {
             superagent
-                .patch(`${this.url}/api/todo/${id}`)
+                .patch(`${this.url}${id}`)
                 .send({ completed: true })
                 .end((err, res) => resolve())
         })
@@ -67,7 +67,7 @@ export const clearCompleted = ids => { return dispatch => {
     var promises = ids.map(id => {
         return new Promise((resolve, reject) => {
             superagent
-                .delete(`${this.url}/api/todo/${id}`)
+                .delete(`${this.url}${id}`)
                 .end((err, res) => resolve())
         })
     })
