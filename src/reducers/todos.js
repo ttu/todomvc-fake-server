@@ -14,7 +14,7 @@ export default function todos(state = initialState, action) {
   switch (action.type) {
     // Now as todo data is stored to server, we need to update whole state
     case GET_TODOS:
-      return action.data
+      return [ ...action.data ]
 
     case ADD_TODO:
       return [
