@@ -6,12 +6,14 @@ This is a modified version of original [Redux TodoMVC example](https://github.co
 
 ## Get started
 ```sh
-# Start Fake JSON Server (check README if wan't to run this with Docker)
+# Start Fake JSON Server (check Fake JSON Server's README if you don't have .NET installed)
 $ git clone https://github.com/ttu/dotnet-fake-json-server.git
 $ cd dotnet-fake-json-server/FakeServer
 $ dotnet run --file tododb.json --urls http://localhost:57602
 
-# Start Front End 
+# Start Front End
+$ git clone https://github.com/ttu/todomvc-fake-server.git
+$ cd todomvc-fake-server
 $ npm install
 $ npm start
 ```
@@ -20,7 +22,9 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ## Step by step modification guide
 
-TODO: Step by step guide how to modify original [Redux TodoMVC Example](https://github.com/reactjs/redux/tree/master/examples/todomvc) and end up with this.
+[How to modify React TodoMVC example to use a REST API and WebSockets](http://ttu.github.io/redux-todomvc-with-rest-api/)
+
+Step by step guide how to start with the original Redux TodoMVC example and end up with this.
 
 ### Notes
 
